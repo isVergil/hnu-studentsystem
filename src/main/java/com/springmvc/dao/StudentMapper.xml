@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc.dao.StudentMapper">
+    <select id="queryStudentInfo" resultType="com.springmvc.entity.Student">
+        select * from t_student_baseinfo
+        <where>
+            <if test="name!=null">
+                and name like '%${name}%'
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insertStudentInfo" parameterType="com.springmvc.entity.Student">
+        insert into t_student_baseinfo (name,idcard,academy,dept,class,major,research,gender,birthday,email,telephone,qq,wechat,homeaddress,nation,remarks)
+        values (#{name},#{idcard},#{academy},#{dept},#{class},#{major},#{research},#{gender},#{birthday},#{email},#{telephone},#{qq},#{wechat},#{homeaddress},#{nation},#{remarks})
+    </insert>
+</mapper>
