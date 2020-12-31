@@ -3,17 +3,133 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springmvc.dao.StudentMapper">
-    <select id="queryStudentInfo" resultType="com.springmvc.entity.Student">
+    <select id="queryStudentInfoById" parameterType="java.lang.Long" resultType="com.springmvc.entity.Student">
         select * from t_student_baseinfo
         <where>
-            <if test="name!=null">
-                and name like '%${name}%'
+            <if test="id!=null">
+                id=#{id}
             </if>
         </where>
     </select>
-    
+
+    <select id="queryStudentInfo" resultType="com.springmvc.entity.Student">
+        SELECT
+        d.*,
+        a.name AS academyCN,
+        b.name AS deptCN,
+        e.name AS classsCN,
+        CASE WHEN d.gender=1 THEN '男'
+        WHEN d.gender=0 THEN '女'
+        else '未填写' END AS genderCN
+        FROM
+        t_student_baseinfo d
+        LEFT JOIN t_dictionary a ON d.academy = a.id
+        LEFT JOIN t_dictionary b ON d.dept = b.id
+        LEFT JOIN t_dictionary e ON d.classs = e.id
+        <where>
+            <if test="academy!=null">
+                CONCAT(IFNULL(a.name,''),IFNULL(b.name,''),IFNULL(e.name,'')) like CONCAT('%',#{academy},'%')
+            </if>
+            <if test="contact!=null">
+                and
+                CONCAT(IFNULL(d.telephone,''),IFNULL(d.qq,''),IFNULL(d.wechat,''),IFNULL(d.homeaddress,''),IFNULL(d.email,''))
+                like
+                CONCAT('%',#{contact},'%')
+            </if>
+            <if test="name!=null">
+                and d.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="studentid!=null">
+                and d.studentid like CONCAT('%',#{studentid},'%')
+            </if>
+            <if test="idcard!=null">
+                and d.idcard like CONCAT('%',#{idcard},'%')
+            </if>
+            <if test="gender!=null">
+                and d.gender =#{gender}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryDictionaryInfo" resultType="com.springmvc.entity.Dictionary">
+        SELECT * FROM t_dictionary
+        <where>
+            <if test=" id!=null">
+                and id =#{id}
+            </if>
+            <if test=" parentid!=null">
+                and parentid =#{parentid}
+            </if>
+            <if test=" name!=null and name != '' ">
+                and name =#{name}
+            </if>
+            <if test=" remarks!=null and remarks != '' ">
+                and remarks =#{remarks}
+            </if>
+        </where>
+    </select>
+
     <insert id="insertStudentInfo" parameterType="com.springmvc.entity.Student">
-        insert into t_student_baseinfo (name,idcard,academy,dept,class,major,research,gender,birthday,email,telephone,qq,wechat,homeaddress,nation,remarks)
-        values (#{name},#{idcard},#{academy},#{dept},#{class},#{major},#{research},#{gender},#{birthday},#{email},#{telephone},#{qq},#{wechat},#{homeaddress},#{nation},#{remarks})
+        insert into t_student_baseinfo (name,studentid,idcard,academy,dept,classs,research,gender,birthdate,email,telephone,qq,wechat,homeaddress,nation,remarks)
+        values (#{name},#{studentid},#{idcard},#{academy},#{dept},#{classs},#{research},#{gender},#{birthdate},#{email},#{telephone},#{qq},#{wechat},#{homeaddress},#{nation},#{remarks})
     </insert>
+
+    <update id="updateStudent" parameterType="com.springmvc.entity.Student">
+        update t_student_baseinfo
+        <set>
+            <if test="name!=null">
+                name=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="studentid!=null">
+                studentid=#{studentid,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard!=null">
+                idcard=#{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="academy!=null">
+                academy=#{academy,jdbcType=INTEGER},
+            </if>
+            <if test="dept!=null">
+                dept=#{dept,jdbcType=INTEGER},
+            </if>
+            <if test="classs!=null">
+                classs=#{classs,jdbcType=INTEGER},
+            </if>
+            <if test="research!=null">
+                research=#{research,jdbcType=VARCHAR},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender,jdbcType=BIT},
+            </if>
+            <if test="birthdate!=null">
+                birthdate=#{birthdate,jdbcType=DATE},
+            </if>
+            <if test="email!=null">
+                email=#{email,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone!=null">
+                telephone=#{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="qq!=null">
+                qq=#{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat!=null">
+                wechat=#{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="homeaddress!=null">
+                homeaddress=#{homeaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="nation!=null">
+                nation=#{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks!=null">
+                remarks=#{remarks,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteStudentInfoById" parameterType="java.lang.Integer">
+         delete from t_student_baseinfo  where id = #{id}
+    </delete>
 </mapper>

@@ -13,7 +13,12 @@ import java.util.Date;
 public class Student {
     private Long id;
     private String name;
+    private String studentid;
     private String idcard;
+    private Long academy;
+    private Long dept;
+    private Long classs;
+    private String research;
     private boolean gender;
     @JSONField(format = "yyyy-MM-dd")
     private Date birthdate;
@@ -24,4 +29,9 @@ public class Student {
     private String homeaddress;
     private String nation;
     private String remarks;
+    //附加字段
+    private String academyCN;
+    private String deptCN;
+    private String classsCN;
+    private String genderCN;
 }

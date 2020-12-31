@@ -28,24 +28,24 @@ public class R implements Serializable {
         }
     }
 
-    public static com.springmvc.util.R ok() {
-        return new com.springmvc.util.R(Constants.OK_CODE, Constants.OK_MSG, null);
+    public static R ok() {
+        return new R(Constants.OK_CODE, Constants.OK_MSG, null);
     }
 
-    public static com.springmvc.util.R ok(Object data) {
-        return new com.springmvc.util.R(Constants.OK_CODE, Constants.OK_MSG, data);
+    public static R ok(Object data) {
+        return new R(Constants.OK_CODE, Constants.OK_MSG, data);
     }
 
-    public static com.springmvc.util.R ok(String msg, Object data) {
-        return new com.springmvc.util.R(Constants.OK_CODE, msg, data);
+    public static R ok(String msg, Object data) {
+        return new R(Constants.OK_CODE, msg, data);
     }
 
-    public static com.springmvc.util.R fail(String msg) {
-        return new com.springmvc.util.R(Constants.FAIL_CODE, msg, null);
+    public static R fail(String msg) {
+        return new R(Constants.FAIL_CODE, msg, null);
     }
 
-    public static com.springmvc.util.R fail(int errorCode, String msg) {
-        return new com.springmvc.util.R(errorCode, msg, null);
+    public static R fail(int errorCode, String msg) {
+        return new R(errorCode, msg, null);
     }
 
     public int getCode() {

@@ -12,12 +12,12 @@
     {
       "title": "研究生管理",
       "icon": "fa fa-address-book",
-      "href": "student",
+      "href": "studentInfo",
       "target": "_self",
       "child": [
         {
           "title": "研究生信息",
-          "href": "student",
+          "href": "studentInfo",
           "icon": "fa fa-window-maximize",
           "target": "_self"
         },

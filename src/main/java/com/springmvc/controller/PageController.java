@@ -10,7 +10,7 @@ public class PageController {
         return "index";
     }
 
-    @GetMapping("/student")
+    @GetMapping("/studentInfo")
     public String student() {
         return "student";
     }

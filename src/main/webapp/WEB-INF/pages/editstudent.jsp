@@ -41,19 +41,20 @@
         </fieldset>
 
         <form class="layui-form" action="" lay-filter="formRender">
-
+            <input type="hidden" name="id" value="${editinfo.id}">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label label-required-next">姓名：</label>
                     <div class="layui-input-inline">
                         <input type="text" name="name" autocomplete="off" class="layui-input" lay-verify="requireName"
+                               value="${editinfo.name}"
                                placeholder="请输入姓名">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label label-required-next">民族：</label>
                     <div class="layui-input-block">
-                        <select name="nation">
+                        <select name="nation" id="selectnation">
                             <option value="9" selected="">汉族</option>
                             <option value="0">写作</option>
                             <option value="1">阅读</option>
@@ -66,16 +67,10 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">学号：</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="studentid" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
                     <label class="layui-form-label">性别：</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="gender" value="1" title="男" checked="checked">
-                        <input type="radio" name="gender" value="0" title="女">
+                        <input type="radio" name="gender" value="0" title="男" checked="checked">
+                        <input type="radio" name="gender" value="1" title="女">
                     </div>
                 </div>
             </div>
@@ -83,13 +78,15 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">身份证号：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="idcard" autocomplete="off" class="layui-input" placeholder="请输入身份证号">
+                        <input type="text" name="idcard" autocomplete="off" class="layui-input" placeholder="请输入身份证号"
+                               value="${editinfo.idcard}">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">生日：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="birthdate" id="birthday" autocomplete="off" class="layui-input">
+                        <input type="text" name="birthday" id="birthday" autocomplete="off" class="layui-input"
+                               value="${editinfo.birthdate}">
                     </div>
                 </div>
             </div>
@@ -98,6 +95,7 @@
                     <label class="layui-form-label label-required-next">手机：</label>
                     <div class="layui-input-inline">
                         <input type="text" lay-verify="requireTelephone" name="telephone" autocomplete="off"
+                               value="${editinfo.telephone}"
                                class="layui-input" placeholder="请输入手机号">
                     </div>
                 </div>
@@ -105,6 +103,7 @@
                     <label class="layui-form-label label-required-next">邮箱：</label>
                     <div class="layui-input-inline">
                         <input type="email" lay-verify="requireEmail" name="email" autocomplete="off"
+                               value="${editinfo.email}"
                                class="layui-input" placeholder="请输入邮箱">
                     </div>
                 </div>
@@ -113,20 +112,21 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">QQ号：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="qq" autocomplete="off" class="layui-input">
+                        <input type="text" name="qq" autocomplete="off" class="layui-input" value="${editinfo.qq}">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">微信号：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="wechat" autocomplete="off" class="layui-input">
+                        <input type="text" name="wechat" autocomplete="off" class="layui-input"
+                               value="${editinfo.wechat}">
                     </div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">家庭住址：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="homeaddress" autocomplete="off"
+                    <input type="text" name="homeaddress" autocomplete="off" value="${editinfo.homeaddress}"
                            class="layui-input">
                 </div>
             </div>
@@ -150,7 +150,7 @@
                 </div>
                 <label class="layui-form-label">班级：</label>
                 <div class="layui-input-inline">
-                    <select name="classs" id="classselecter" lay-filter="classRender">
+                    <select name="class" id="classselecter" lay-filter="classRender">
                         <option value="">请选择班级</option>
                         <option value="西湖区">西湖区</option>
                         <option value="余杭区">余杭区</option>
@@ -161,14 +161,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">研究方向：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="research" autocomplete="off"
+                    <input type="text" name="classs" autocomplete="off" value="${editinfo.classs}"
                            class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">备注：</label>
                 <div class="layui-input-block">
-                    <textarea name="remarks" class="layui-textarea"></textarea>
+                    <textarea name="remarks" class="layui-textarea" value="${editinfo.remarks}"></textarea>
                 </div>
             </div>
 
@@ -210,6 +210,7 @@
                 form.render('select', 'formRender');
             }
         });
+        //$('#academyselecter').val(${editinfo.academy});
 
         form.on('select(academyRender)', function (data) {
             console.log(data.value.length)
@@ -234,6 +235,8 @@
                 });
             }
         });
+        //$('#deptselecter').val(${editinfo.dept});
+
 
         form.on('select(deptRender)', function (data) {
             console.log(data.value.length)
@@ -257,6 +260,7 @@
                 });
             }
         });
+        //$('#classselecter').val(${editinfo.classs});
 
         //自定义验证规则
         form.verify({
@@ -287,10 +291,11 @@
 
         //监听提交
         form.on('submit(submitRender)', function (data) {
-            console.log(data.field);
+            var datas = data.field;//form单中的数据信息
             //向后台发送数据提交添加
+            console.log(data);
             $.ajax({
-                url: "/student/add",
+                url: "/student/edit",
                 type: "POST",
                 async: true,
                 contentType: "application/json",
@@ -299,7 +304,7 @@
                 success: function (result) {
                     console.log(result);
                     if (result.code == 0) {//如果成功
-                        layer.msg('添加成功', {
+                        layer.msg('修改成功', {
                             icon: 6,
                             time: 500
                         }, function () {
@@ -308,30 +313,13 @@
                             parent.layer.close(iframeIndex);
                         })
                     } else {
-                        layer.msg("添加失败!");
+                        layer.msg("修改失败!");
                     }
                 }
-            })
+            });
             return false;
-
-            // $.ajax({
-            //     url: "/student/add",
-            //     type: "POST",
-            //     async: true,
-            //     contentType: "application/json",
-            //     data: JSON.stringify(data.field),
-            //     dataType: 'json',
-            //     success: function (result) {
-            //         console.log(result);
-            //         if (result == 1)
-            //             miniTab.deleteCurrentByIframe();
-            //
-            //     },
-            //     error: function () {
-            //         //todo
-            //     }
-            // });
         });
+
 
         //表单初始赋值
         form.val('example', {

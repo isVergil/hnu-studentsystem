@@ -67,7 +67,7 @@ ${pageContext.request.contextPath}
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;">${user.chinesename}</a>
                     <dl class="layui-nav-child">
                         <dd>
                             <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料"
@@ -132,11 +132,17 @@ ${pageContext.request.contextPath}
 <script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji'], function () {
+    layui.use(['jquery', 'layer', 'element', 'miniAdmin', 'miniTongji'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             miniAdmin = layui.miniAdmin,
-            miniTongji = layui.miniTongji;
+            miniTongji = layui.miniTongji,
+            element = layui.element;
+
+        element.on('tab(myTaskTabs)', function (data) {
+            window.location.reload();
+
+        });
 
         var options = {
             iniUrl: "api/init.json",    // 初始化接口
