@@ -1,6 +1,5 @@
 package com.springmvc.dao;
 
-import com.springmvc.entity.Dictionary;
 import com.springmvc.entity.Student;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -23,9 +22,6 @@ public interface StudentMapper {
 
     //新增一个学生
     int insertStudentInfo(Student student);
-
-    //查找所有的学院
-    List<Dictionary> queryDictionaryInfo(@Param("id") Long id, @Param("parentid") Long parentid, @Param("name") String name, @Param("remarks") String remarks);
 
     Student queryStudentInfoById(@Param("id") Long id);
 

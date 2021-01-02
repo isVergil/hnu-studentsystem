@@ -52,4 +52,20 @@ public class UserServiceImpl implements UserService {
     public User queryUserByNameAndPassword(String username, String password, Integer type) {
         return userDao.queryUserByNameAndPassword(username, password,type);
     }
+
+    @Override
+    public PageInfo<User> queryUserInfo(User user, int page, int limit) {
+        //传入参数，每页页数，当前页
+        PageHelper.startPage(page, limit);
+        List<User> list = userDao.queryUserInfo(user);
+        //通过包装获取分页需要的其他值信息
+        PageInfo<User> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public int insertUser(User user) {
+        int influenceCount = userDao.insertUser(user);
+        return influenceCount;
+    }
 }

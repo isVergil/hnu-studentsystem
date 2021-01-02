@@ -17,4 +17,30 @@
             </if>
         </where>
     </select>
+
+    <select id="queryUserInfo" parameterType="com.springmvc.entity.User" resultType="com.springmvc.entity.User">
+        select * from t_user
+        <where>
+            <if test="username!=null and username!=''">
+                username=#{username}
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+            <if test="chinesename!=null and chinesename!=''">
+                and chinesename=#{chinesename}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="com.springmvc.entity.User">
+        insert into t_user (username,password,chinesename,connect,status,type,remark)
+        values (#{username},#{password},#{chinesename},#{connect},#{status},#{type},#{remark})
+    </insert>
 </mapper>

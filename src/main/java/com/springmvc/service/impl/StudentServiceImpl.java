@@ -3,7 +3,6 @@ package com.springmvc.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springmvc.dao.StudentMapper;
-import com.springmvc.entity.Dictionary;
 import com.springmvc.entity.Student;
 import com.springmvc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +30,6 @@ public class StudentServiceImpl implements StudentService {
     public int insertStudent(Student student) {
         int influenceCount = studentDao.insertStudentInfo(student);
         return influenceCount;
-    }
-
-    //查找所有的学院
-    @Override
-    public List<Dictionary> queryDictionaryInfo(Long id, Long parentid, String name, String remarks) {
-        List<Dictionary> list = studentDao.queryDictionaryInfo(id, parentid, name, remarks);
-        return list;
     }
 
     @Override

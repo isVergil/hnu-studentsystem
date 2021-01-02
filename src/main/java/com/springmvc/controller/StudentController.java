@@ -3,6 +3,7 @@ package com.springmvc.controller;
 import com.github.pagehelper.PageInfo;
 import com.springmvc.entity.Dictionary;
 import com.springmvc.entity.Student;
+import com.springmvc.service.DictionaryService;
 import com.springmvc.service.StudentService;
 import com.springmvc.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,33 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private DictionaryService dictionaryService;
+
     /**
-     * 回到首页
+     * 进入student页面
+     *
+     * @return
      */
-    @GetMapping("/index")
-    public String studentIndex() {
+    @GetMapping("/infoPage")
+    public String student() {
         return "student";
     }
 
     /**
-     * 新增页面
+     * 回到首页
+     *
+     * @return
+     */
+    @GetMapping("/index")
+    public String studentIndex() {
+        return "index";
+    }
+
+    /**
+     * 进入新增页面
+     *
+     * @return
      */
     @GetMapping("/addPage")
     public String addBook() {
@@ -37,7 +55,9 @@ public class StudentController {
     }
 
     /**
-     * @param model
+     * 编辑页面
+     *
+     * @param model 根据id带其他参数
      * @param id
      * @return
      */
@@ -79,9 +99,10 @@ public class StudentController {
             Integer influenceCount = studentService.insertStudent(student);
             return R.ok(influenceCount.toString(), null);
         } catch (Exception e) {
-            throw e;
+            //todo 错误日志
+            return R.fail("失败");
         } finally {
-            //todo 日志
+            //todo 操作日志
         }
     }
 
@@ -92,9 +113,10 @@ public class StudentController {
             studentService.updateStudent(student);
             return R.ok();
         } catch (Exception e) {
-            throw e;
+            //todo 错误日志
+            return R.fail("失败");
         } finally {
-            //todo 日志
+            //todo 操作日志
         }
     }
 
@@ -106,7 +128,10 @@ public class StudentController {
             studentService.deleteStudentInfoByIds(list);
             return R.ok();
         } catch (Exception e) {
-            throw e;
+            //todo 错误日志
+            return R.fail("失败");
+        } finally {
+            //todo 操作日志
         }
     }
 
@@ -123,12 +148,11 @@ public class StudentController {
     @ResponseBody
     public R getAcademyDeptClassData(@RequestParam(value = "id", required = false) Long id, @RequestParam(value = "parentid", required = false) Long parentid, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "remarks", required = false) String remarks) {
         try {
-            List<Dictionary> dictionaryList = studentService.queryDictionaryInfo(id, parentid, name, remarks);
+            List<Dictionary> dictionaryList = dictionaryService.queryDictionaryInfo(id, parentid, name, remarks);
             return R.ok("成功", dictionaryList);
         } catch (Exception e) {
+            //todo 错误日志
             return R.fail("失败");
-        } finally {
-            //todo 日志
         }
     }
 }

@@ -21,11 +21,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="css/layuimini.css?v=2.0.4.2" media="all">
-    <link rel="stylesheet" href="css/themes/default.css" media="all">
-    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/layuimini.css?v=2.0.4.2" media="all">
+    <link rel="stylesheet" href="../../css/themes/default.css" media="all">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -129,8 +129,8 @@ ${pageContext.request.contextPath}
         </div>
     </div>
 </div>
-<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
     layui.use(['jquery', 'layer', 'element', 'miniAdmin', 'miniTongji'], function () {
         var $ = layui.jquery,

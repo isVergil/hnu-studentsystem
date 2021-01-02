@@ -21,5 +21,10 @@ public interface UserMapper {
 
     List<User> queryAdminInfoAll(User admin);
 
-    User queryUserByNameAndPassword(@Param("username") String username, @Param("password") String password,@Param("type") Integer type);
+    User queryUserByNameAndPassword(@Param("username") String username, @Param("password") String password, @Param("type") Integer type);
+
+    List<User> queryUserInfo(User user);
+
+    int insertUser(User user);
+
 }

@@ -70,7 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="layui-inline">
-                                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit=""  lay-filter="data-search-btn">
+                                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit=""
+                                            lay-filter="data-search-btn">
                                         <i class="layui-icon"> </i> 搜 索
                                     </button>
                                 </div>
@@ -145,7 +146,7 @@
 
             //执行搜索重载
             table.reload('currentTableId', {
-                url: 'student/info?academy=' + data.field.academy + '&contact=' + data.field.contact + '&name=' + data.field.name + '&studentid=' + data.field.studentid + '&idcard=' + data.field.idcard + '&gender=' + data.field.gender,
+                url: '/student/info?academy=' + data.field.academy + '&contact=' + data.field.contact + '&name=' + data.field.name + '&studentid=' + data.field.studentid + '&idcard=' + data.field.idcard + '&gender=' + data.field.gender,
                 page: {
                     curr: 1
                 }

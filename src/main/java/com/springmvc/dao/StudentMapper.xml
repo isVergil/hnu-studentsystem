@@ -27,22 +27,22 @@
         LEFT JOIN t_dictionary b ON d.dept = b.id
         LEFT JOIN t_dictionary e ON d.classs = e.id
         <where>
-            <if test="academy!=null">
+            <if test="academy!=null and academy!=''">
                 CONCAT(IFNULL(a.name,''),IFNULL(b.name,''),IFNULL(e.name,'')) like CONCAT('%',#{academy},'%')
             </if>
-            <if test="contact!=null">
+            <if test="contact!=null and contact!=''">
                 and
                 CONCAT(IFNULL(d.telephone,''),IFNULL(d.qq,''),IFNULL(d.wechat,''),IFNULL(d.homeaddress,''),IFNULL(d.email,''))
                 like
                 CONCAT('%',#{contact},'%')
             </if>
-            <if test="name!=null">
+            <if test="name!=null and name!=''">
                 and d.name like CONCAT('%',#{name},'%')
             </if>
             <if test="studentid!=null">
                 and d.studentid like CONCAT('%',#{studentid},'%')
             </if>
-            <if test="idcard!=null">
+            <if test="idcard!=null and idcard!=''">
                 and d.idcard like CONCAT('%',#{idcard},'%')
             </if>
             <if test="gender!=null">

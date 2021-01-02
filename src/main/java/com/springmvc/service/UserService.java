@@ -22,5 +22,10 @@ public interface UserService {
     User queryAdminById(Integer id);
 
     //登录查询
-    User queryUserByNameAndPassword(String username, String password,Integer type);
+    User queryUserByNameAndPassword(String username, String password, Integer type);
+
+    //findall  用户管理 分页
+    PageInfo<User> queryUserInfo(User user, int page, int limit);
+
+    int insertUser(User user);
 }

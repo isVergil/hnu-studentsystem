@@ -12,12 +12,12 @@
     {
       "title": "研究生管理",
       "icon": "fa fa-address-book",
-      "href": "studentInfo",
+      "href": "/student/infoPage",
       "target": "_self",
       "child": [
         {
           "title": "研究生信息",
-          "href": "studentInfo",
+          "href": "/student/infoPage",
           "icon": "fa fa-window-maximize",
           "target": "_self"
         },
@@ -218,12 +218,24 @@
     {
       "title": "系统设置",
       "icon": "fa fa-slideshare",
-      "href": "",
+      "href": "dictionary/infoPage",
       "target": "_self",
       "child": [
         {
-          "title": "管理用户",
-          "href": "page/editor.html",
+          "title": "数据字典",
+          "href": "dictionary/infoPage",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "user/infoPage",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "feedback/addPage",
           "icon": "fa fa-edit",
           "target": "_self"
         },
