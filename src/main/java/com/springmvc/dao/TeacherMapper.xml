@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc.dao.TeacherMapper">
+    <select id="queryTeacherInfoById" parameterType="java.lang.Long" resultType="com.springmvc.entity.Teacher">
+        select * from t_teacher
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryTeacherInfo" resultType="com.springmvc.entity.Teacher">
+        SELECT a.*,b.name as academyCN,c.name AS deptCN from t_teacher a
+        left join t_dictionary b ON a.academy=b.id
+        left join t_dictionary c ON a.dept=c.id
+        <where>
+            <if test="contact1!=null and contact1!=''">
+                CONCAT(IFNULL(a.name,''),IFNULL(a.teacherid,''))
+                like CONCAT('%',#{contact1},'%')
+            </if>
+            <if test="contact2!=null and contact2!=''">
+                and
+                CONCAT(IFNULL(b.name,''),IFNULL(c.name,''))
+                like CONCAT('%',#{contact2},'%')
+            </if>
+            <if test="research!=null and research!=''">
+                and
+                a.research
+                like CONCAT('%',#{research},'%')
+            </if>
+            <if test="gender!=null">
+                and a.gender =#{gender}
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertTeacherInfo" parameterType="com.springmvc.entity.Teacher">
+        insert into t_teacher (name,teacherid,academy,dept,research,gender,age,connect)
+        VALUES (#{name},#{teacherid},#{academy},#{dept},#{research},#{gender},#{age},#{connect})
+    </insert>
+
+    <update id="updateTeacherInfo" parameterType="com.springmvc.entity.Teacher">
+        update t_teacher
+        <set>
+            <if test="name!=null">
+                name=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="teacherid!=null">
+                teacherid=#{teacherid,jdbcType=VARCHAR},
+            </if>
+            <if test="academy!=null">
+                academy=#{academy,jdbcType=INTEGER},
+            </if>
+            <if test="dept!=null">
+                dept=#{dept,jdbcType=INTEGER},
+            </if>
+            <if test="research!=null">
+                research=#{research,jdbcType=VARCHAR},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender,jdbcType=BIT},
+            </if>
+            <if test="age!=null">
+                age=#{age,jdbcType=INTEGER},
+            </if>
+            <if test="connect!=null">
+                connect=#{connect,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteTeacherInfoById" parameterType="java.lang.Integer">
+         delete from t_teacher  where id = #{id}
+    </delete>
+
+    <select id="queryAllTeachers" resultType="com.springmvc.entity.Teacher">
+         select * from t_teacher
+    </select>
+</mapper>

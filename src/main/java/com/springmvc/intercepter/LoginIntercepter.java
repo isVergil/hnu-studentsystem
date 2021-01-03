@@ -24,8 +24,17 @@ public class LoginIntercepter implements HandlerInterceptor {
         if (session.getAttribute("user") != null) {
             return true;
         } else {
-            //没有登录 跳转到登录页面进行登录操作
-            response.sendRedirect("/login");
+            String sd=request.getRequestURI();
+            switch (request.getRequestURI()) {
+                case "/verifyAccount":
+                case "/changePassword":
+                case "/dictionary/getData":
+                    return true;
+            }
+            if (request.getRequestURI().equals("/findpasswordPage"))
+                response.sendRedirect("/findpassword");
+            else
+                response.sendRedirect("/login"); //登录
             return false;
         }
     }

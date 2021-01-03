@@ -1,6 +1,7 @@
 package com.springmvc.dao;
 
 import com.springmvc.entity.Dictionary;
+import com.springmvc.entity.Log;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -16,4 +17,7 @@ public interface DictionaryMapper {
 
     //修改字典
     int updateDictionaryInfo(Dictionary dictionary);
+
+    //查找所有的日志
+    List<Log> queryLogInfo();
 }

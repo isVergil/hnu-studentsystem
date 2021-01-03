@@ -1,0 +1,63 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "/home",
+    "target": "_self"
+  },
+  "logoInfo": {
+    "title": "研究生管理系统",
+    "image": "images/logo.png",
+    "href": "javascript:;",
+    "target": "_self"
+  },
+  "menuInfo": [
+    {
+      "title": "基础信息管理",
+      "icon": "fa fa-address-book",
+      "href": "/student/infoPage",
+      "target": "_self",
+      "child": [
+        {
+          "title": "研究生信息",
+          "href": "/student/infoPage",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "教师信息",
+          "href": "/teacher/infoPage",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "反馈管理",
+      "icon": "fa fa-slideshare",
+      "href": "/feedback/addPage",
+      "target": "_self",
+      "child": [
+        {
+          "title": "提交反馈",
+          "href": "/feedback/addPage",
+          "icon": "fa fa-superpowers",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "系统设置",
+      "icon": "fa fa-slideshare",
+      "href": "/user/changePasswordPage",
+      "target": "_self",
+      "child": [
+        {
+          "title": "修改密码",
+          "href": "/user/changePasswordPage",
+          "icon": "fa fa-superpowers",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}

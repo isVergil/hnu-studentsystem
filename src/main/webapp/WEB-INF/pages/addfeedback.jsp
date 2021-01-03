@@ -28,39 +28,8 @@
         <div id="editor" style="margin: 10px 0 10px 0">
         </div>
         <div>
-            <button type="button" class="layui-btn">提交</button>
+            <button type="button" class="layui-btn" id="save">提交</button>
         </div>
-
-        <pre class="layui-code">
-        var E = window.wangEditor;
-        var editor = new E('#editor');
-        editor.customConfig.uploadImgServer = "../api/upload.json";
-        editor.customConfig.uploadFileName = 'image';
-        editor.customConfig.pasteFilterStyle = false;
-        editor.customConfig.uploadImgMaxLength = 5;
-        editor.customConfig.uploadImgHooks = {
-            // 上传超时
-            timeout: function (xhr, editor) {
-                layer.msg('上传超时！')
-            },
-            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-            customInsert: function (insertImg, result, editor) {
-                console.log(result);
-                if (result.code == 1) {
-                    var url = result.data.url;
-                    url.forEach(function (e) {
-                        insertImg(e);
-                    })
-                } else {
-                    layer.msg(result.msg);
-                }
-            }
-        };
-        editor.customConfig.customAlert = function (info) {
-            layer.msg(info);
-        };
-        editor.create();
-        </pre>
 
     </div>
 </div>
@@ -69,7 +38,7 @@
 <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script type="text/javascript">
-    layui.use(['layer','wangEditor'], function () {
+    layui.use(['layer', 'wangEditor'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             wangEditor = layui.wangEditor;
@@ -101,6 +70,31 @@
             layer.msg(info);
         };
         editor.create();
+
+
+        //提交反馈
+        $("#save").click(function () {
+            var data = editor.txt.html();
+            layer.msg(data);
+            $.ajax({
+                url: "/feedback/add",
+                type: "POST",
+                async: true,
+                data: {text: data.toString()},
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 0) {//如果成功
+                        layer.msg('提交成功！', {
+                            icon: 6,
+                            time: 500
+                        });
+                    } else {
+                        layer.msg("提交失败!");
+                    }
+                }
+            })
+        });
 
     });
 </script>

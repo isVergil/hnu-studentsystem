@@ -1,22 +1,32 @@
 package com.springmvc.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.springmvc.entity.ChartHelper;
 import com.springmvc.entity.Dictionary;
 import com.springmvc.entity.Student;
+import com.springmvc.entity.User;
 import com.springmvc.service.DictionaryService;
 import com.springmvc.service.StudentService;
 import com.springmvc.util.R;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+
+    //日志
+    private static Logger logger = Logger.getLogger(StudentController.class);
+
     //自动装配
     @Autowired
     private StudentService studentService;
@@ -77,11 +87,15 @@ public class StudentController {
      */
     @GetMapping("/info")
     @ResponseBody
-    public R findAll(String academy, String contact, String name, String studentid, String idcard, Integer gender, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+    public R findAll(String academy, String contact, String name, String studentid, String idcard, Integer gender, Integer role, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit, HttpServletRequest request) {
         try {
-            PageInfo<Student> studentPageInfo = studentService.queryStudentInfo(academy, contact, name, studentid, idcard, gender, page, limit);
+            HttpSession httpSession = request.getSession();
+            User user = (User) httpSession.getAttribute("user");
+            Integer dsdfsf = user.getRole();
+            PageInfo<Student> studentPageInfo = studentService.queryStudentInfo(academy, contact, name, studentid, idcard, gender, user.getRole(), page, limit);
             return R.ok("成功", studentPageInfo.getList());
         } catch (Exception e) {
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
             //todo 日志
@@ -99,10 +113,10 @@ public class StudentController {
             Integer influenceCount = studentService.insertStudent(student);
             return R.ok(influenceCount.toString(), null);
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
-            //todo 操作日志
+            logger.info("新增了一条学生信息");
         }
     }
 
@@ -113,25 +127,25 @@ public class StudentController {
             studentService.updateStudent(student);
             return R.ok();
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
-            //todo 操作日志
+            logger.info("编辑了一条学生信息");
         }
     }
 
     @RequestMapping("/deleteByIds")
     @ResponseBody
-    public R deleteBookByIds(@RequestBody String ids) {
+    public R deleteBookByIds(@RequestParam(value = "ids") String ids) {
         try {
             List list = Arrays.asList(ids.split(","));
             studentService.deleteStudentInfoByIds(list);
             return R.ok();
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
-            //todo 操作日志
+            logger.info("删除了一些学生");
         }
     }
 
@@ -151,7 +165,19 @@ public class StudentController {
             List<Dictionary> dictionaryList = dictionaryService.queryDictionaryInfo(id, parentid, name, remarks);
             return R.ok("成功", dictionaryList);
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
+            return R.fail("失败");
+        }
+    }
+
+    @GetMapping("/getChartData")
+    @ResponseBody
+    public R getChartData() {
+        try {
+            List<ChartHelper> chartHelpers = studentService.queryChartInfo();
+            return R.ok("成功", chartHelpers);
+        } catch (Exception e) {
+            logger.error(e.toString());
             return R.fail("失败");
         }
     }

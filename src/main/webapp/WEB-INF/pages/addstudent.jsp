@@ -208,6 +208,12 @@
                         <option value="拱墅区">临安市</option>
                     </select>
                 </div>
+                <label class="layui-form-label">导师：</label>
+                <div class="layui-input-inline">
+                    <select name="teacher" id="teacherselecter">
+                        <option value="">请选择导师</option>
+                    </select>
+                </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">研究方向：</label>
@@ -242,6 +248,22 @@
             , layer = layui.layer
             , laydate = layui.laydate
             , miniTab = layui.miniTab;
+
+        $.ajax({
+            url: "/teacher/getAll",
+            type: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (data) {
+                $("#teacherselecter option:not(:first)").remove();
+                if (data.data.length > 0) {
+                    $.each(data.data, function (index, item) {
+                        $('#teacherselecter').append(new Option(item.name, item.id));
+                    });
+                }
+                form.render('select', 'formRender');
+            }
+        });
 
         //学院 系别 班级 三级联动
         $.ajax({

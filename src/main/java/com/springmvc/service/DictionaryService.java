@@ -1,6 +1,8 @@
 package com.springmvc.service;
 
+import com.github.pagehelper.PageInfo;
 import com.springmvc.entity.Dictionary;
+import com.springmvc.entity.Log;
 
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface DictionaryService {
 
     //修改字典
     int updateDictionaryInfo(Dictionary dictionary);
+
+    PageInfo<Log> queryLogInfo(int page, int limit);
 }

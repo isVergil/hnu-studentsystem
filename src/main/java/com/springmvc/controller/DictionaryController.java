@@ -1,9 +1,12 @@
 package com.springmvc.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.springmvc.entity.Dictionary;
+import com.springmvc.entity.Log;
 import com.springmvc.service.DictionaryService;
 import com.springmvc.util.R;
 import org.apache.ibatis.annotations.Param;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +18,33 @@ import java.util.List;
 @Controller
 @RequestMapping("/dictionary")
 public class DictionaryController {
+    //日志
+    private static Logger logger = Logger.getLogger(DictionaryController.class);
+
     //自动装配
     @Autowired
     private DictionaryService dictionaryService;
 
-    @GetMapping("/addfeedback")
-    public String addPage() {
-        return "addfeedback";
+    //日志页面
+    @GetMapping("/logPage")
+    public String log() {
+        return "log";
     }
 
-
+    //查找所有的日志
+    @RequestMapping("/loginfo")
+    @ResponseBody
+    public R getLogInfo(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+        try {
+            PageInfo<Log> feedbackPageInfo = dictionaryService.queryLogInfo(page, limit);
+            return R.ok("成功", feedbackPageInfo.getList());
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return R.fail("失败");
+        } finally {
+            //logger.info("处理了一条反馈");
+        }
+    }
 
     /**
      * 进入数据字典页面
@@ -53,6 +73,7 @@ public class DictionaryController {
 
     /**
      * 进入编辑字典页面  传字典所有参数
+     *
      * @param model
      * @param id
      * @param parentid
@@ -82,10 +103,10 @@ public class DictionaryController {
             Integer influenceCount = dictionaryService.insertDictionaryInfo(dictionary);
             return R.ok(influenceCount.toString(), null);
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
-            //todo 操作日志
+            logger.info("新增了一条日志数据");
         }
     }
 
@@ -96,10 +117,10 @@ public class DictionaryController {
             Integer influenceCount = dictionaryService.updateDictionaryInfo(dictionary);
             return R.ok(influenceCount.toString(), null);
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
-            //todo 操作日志
+            logger.info("修改了一条日志数据");
         }
     }
 
@@ -119,7 +140,7 @@ public class DictionaryController {
             List<Dictionary> dictionaryList = dictionaryService.queryDictionaryInfo(id, parentid, name, remarks);
             return R.ok("成功", dictionaryList);
         } catch (Exception e) {
-            //todo 错误日志
+            logger.error(e.toString());
             return R.fail("失败");
         } finally {
             //todo 操作日志

@@ -27,36 +27,24 @@
                     <div class="layui-colla-content layui-show">
                         <form class="layui-form layui-form-pane" action="">
                             <div class="layui-form-item">
-                                <label class="layui-form-label">院系班级</label>
+                                <label class="layui-form-label">导师姓名</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="academy" autocomplete="off" class="layui-input"
-                                           placeholder="请输入院系、班级、专业或研究方向模糊查询">
+                                    <input type="text" name="contact1" autocomplete="off" class="layui-input"
+                                           placeholder="请输入导师和导师编号模糊查询">
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">联系方式</label>
+                                <label class="layui-form-label">院系</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="contact" autocomplete="off" class="layui-input"
-                                           placeholder="请输入手机号、qq、微信、邮箱模糊查询">
+                                    <input type="text" name="contact2" autocomplete="off" class="layui-input"
+                                           placeholder="请输入学院和系别模糊查询">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-inline">
-                                    <label class="layui-form-label">姓名</label>
+                                    <label class="layui-form-label">研究方向</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="name" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">学号</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" name="studentid" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">身份证号</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" name="idcard" autocomplete="off" class="layui-input">
+                                        <input type="text" name="research" autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-inline">
@@ -88,18 +76,14 @@
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除</button>
             </div>
         </script>
-
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-edit-btn" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-delete-btn" lay-event="delete">删除</a>
         </script>
-
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script>
     layui.use(['form', 'table', 'element'], function () {
         var $ = layui.jquery,
@@ -107,29 +91,31 @@
             element = layui.element,
             table = layui.table;
 
-        //监听折叠
-        // element.on('collapse(test)', function(data){
-        //
-        // });
 
         table.render({
             elem: '#currentTableId',
-            url: '/student/info',
+            url: '/teacher/info',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print'],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'name', width: 120, title: '学生姓名', sort: true},
-                {field: 'idcard', width: 200, title: '身份证号', sort: true},
-                {field: 'genderCN', width: 80, title: '性别', sort: true},
-                {field: 'nation', width: 80, title: '民族', sort: true},
-                {field: 'studentid', width: 120, title: '学号', sort: true},
-                {field: 'academyCN', title: '学院', minWidth: 170, sort: true},
-                {field: 'deptCN', title: '系别', minWidth: 80, sort: true},
-                {field: 'classsCN', title: '班级', minWidth: 60, sort: true},
-                {field: 'teacherCN', width: 150, title: '导师', sort: true},
-                {field: 'research', width: 130, title: '研究方向', sort: true},
-                {field: 'telephone', width: 150, title: '手机', sort: true},
+                {field: 'name', width: 150, title: '导师姓名', sort: true},
+                {field: 'teacherid', width: 200, title: '导师编号', sort: true},
+                {
+                    field: 'gender', width: 100, title: '性别',
+                    templet: function (res) {//类型
+                        if (res.gender == '0') {
+                            return '女';
+                        } else {
+                            return '男';
+                        }
+                    }
+                },
+                {field: 'age', title: '年纪', Width: 50, sort: true},
+                {field: 'academyCN', title: '所属学院', Width: 170, sort: true},
+                {field: 'deptCN', title: '系别', Width: 150, sort: true},
+                {field: 'research', minWidth: 130, title: '研究方向', sort: true},
+                {field: 'connect', minWidth: 170, title: '联系方式', sort: true},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -141,13 +127,9 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             console.log(data.field);
-            // layer.alert(result, {
-            //     title: '最终的搜索信息'
-            // });
-
             //执行搜索重载
             table.reload('currentTableId', {
-                url: '/student/info?academy=' + data.field.academy + '&contact=' + data.field.contact + '&name=' + data.field.name + '&studentid=' + data.field.studentid + '&idcard=' + data.field.idcard + '&gender=' + data.field.gender,
+                url: '/teacher/info?contact1=' + data.field.contact1 + '&contact2=' + data.field.contact2 + '&research=' + data.field.research + '&gender=' + data.field.gender,
                 page: {
                     curr: 1
                 }
@@ -169,7 +151,7 @@
                     maxmin: true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '/student/addPage',
+                    content: '/teacher/addPage',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -199,7 +181,6 @@
             console.log(obj)
         });
 
-
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
@@ -210,7 +191,7 @@
                     maxmin: true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '/student/editPage?id=' + data.id,
+                    content: '/teacher/editPage?id=' + data.id,
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -228,15 +209,14 @@
 
 
         //删除一行 或 多行
-        function deleteInfoByIds(ids_, index) {
-            console.log(ids_);
+        function deleteInfoByIds(ids, index) {
             $.ajax({
-                url: "/student/deleteByIds",
+                url: "/teacher/deleteByIds",
                 type: "GET",
                 async: true,
                 dataType: 'json',
                 contentType: "application/json",
-                data: {ids: ids_.toString()},
+                data: {ids: ids},
                 success: function (result) {
                     console.log(result);
                     if (result.code == 0) {

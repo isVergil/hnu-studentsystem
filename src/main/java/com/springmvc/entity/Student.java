@@ -29,9 +29,11 @@ public class Student {
     private String homeaddress;
     private String nation;
     private String remarks;
+    private Integer teacher;
     //附加字段
     private String academyCN;
     private String deptCN;
     private String classsCN;
     private String genderCN;
+    private String teacherCN;
 }

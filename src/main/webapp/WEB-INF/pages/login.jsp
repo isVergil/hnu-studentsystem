@@ -329,7 +329,7 @@
             </div>
             <div class="tip">
                 <div style="color: red;text-align: center;">${msg}</div>
-                <a href="javascript:" class="forget-password">找回密码？</a>
+                <a href="/findpasswordPage" class="forget-password">找回密码？</a>
             </div>
             <div class="layui-form-item" style="text-align:center; width:100%;height:100%;margin:0px;">
                 <button class="login-btn" lay-submit="" lay-filter="login">立即登录</button>

@@ -113,7 +113,7 @@
                 },
                 // {field: 'status', width: 200, title: '状态'},
                 {
-                    field: 'status', width: 200, title: '类型',
+                    field: 'status', width: 200, title: '状态',
                     templet: function (res) {//类型
                         if (res.status == '0') {
                             return '<span class="layui-btn layui-btn-danger layui-btn-xs">锁定</span>'

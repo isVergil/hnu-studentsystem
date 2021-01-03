@@ -27,6 +27,10 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/loginIn"/>
+            <mvc:exclude-mapping path="/findpassword"/>
+            <mvc:exclude-mapping path="/verifyAccount"/>
+            <mvc:exclude-mapping path="/changePassword"/>
+            <mvc:exclude-mapping path="/dictionary/getData?parentid=2"/>
             <bean class="com.springmvc.intercepter.LoginIntercepter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

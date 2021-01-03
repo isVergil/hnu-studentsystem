@@ -1,5 +1,6 @@
 package com.springmvc.dao;
 
+import com.springmvc.entity.ChartHelper;
 import com.springmvc.entity.Student;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public interface StudentMapper {
      * @param gender   性别查询
      * @return
      */
-    List<Student> queryStudentInfo(@Param(value = "academy") String academy, @Param(value = "contact") String contact, @Param(value = "name") String name, @Param(value = "studentid") String studentid, @Param(value = "idcard") String idcard, @Param(value = "gender") Integer gender);
+    List<Student> queryStudentInfo(@Param(value = "academy") String academy, @Param(value = "contact") String contact, @Param(value = "name") String name, @Param(value = "studentid") String studentid, @Param(value = "idcard") String idcard, @Param(value = "gender") Integer gender, @Param(value = "dept") Integer dept);
 
     //新增一个学生
     int insertStudentInfo(Student student);
@@ -28,4 +29,6 @@ public interface StudentMapper {
     void updateStudent(Student student);
 
     void deleteStudentInfoById(Integer id);
+
+    List<ChartHelper> queryChartInfo();
 }

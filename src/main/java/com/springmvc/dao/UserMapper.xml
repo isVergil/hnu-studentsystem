@@ -36,6 +36,15 @@
             <if test="type!=null">
                 and type=#{type}
             </if>
+            <if test="connect!=null">
+                and connect=#{connect}
+            </if>
+            <if test="remark!=null">
+                and remark=#{remark}
+            </if>
+            <if test="role!=null">
+                and role=#{role}
+            </if>
         </where>
     </select>
 
@@ -43,4 +52,23 @@
         insert into t_user (username,password,chinesename,connect,status,type,remark)
         values (#{username},#{password},#{chinesename},#{connect},#{status},#{type},#{remark})
     </insert>
+
+    <update id="updatePassword" parameterType="com.springmvc.entity.User">
+        update t_user
+        <set>
+            <if test="password!=null">
+                password=#{password}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="queryAllUserInfo" resultType="com.springmvc.entity.User">
+         select a.*,b.name from t_user a
+         LEFT JOIN t_dictionary b ON  a.role=b.id
+    </select>
+
+    <update id="updateRole">
+        update t_user set role=#{param2}  where id=#{param1}
+    </update>
 </mapper>

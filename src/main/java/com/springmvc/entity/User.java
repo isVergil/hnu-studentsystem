@@ -18,12 +18,17 @@ public class User implements Serializable {
     private Integer status;
     private Integer type;
     private String remark;
+    private Integer role;
 
-    public User(String username, String chinesename, Integer status, Integer type, String connect, String remark, String password) {
+    //附加字段
+    private String name;
+
+    public User(String username, String chinesename, Integer status, Integer type, String connect, String remark, String password, Integer role) {
         this.username = username;
         this.chinesename = chinesename;
         this.status = status;
         this.type = type;
+        this.role = role;
         //多余的
         this.connect = connect;
         this.remark = remark;

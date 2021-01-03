@@ -1,6 +1,7 @@
 package com.springmvc.service;
 
 import com.github.pagehelper.PageInfo;
+import com.springmvc.entity.ChartHelper;
 import com.springmvc.entity.Student;
 
 import java.util.List;
@@ -14,11 +15,13 @@ public interface StudentService {
     void updateStudent(Student student);
 
     //条件查询 返回分页 Student
-    PageInfo<Student> queryStudentInfo(String academy, String contact, String name, String studentid, String idcard, Integer gender, int page, int limit);
+    PageInfo<Student> queryStudentInfo(String academy, String contact, String name, String studentid, String idcard, Integer gender, Integer dept, int page, int limit);
 
     //edit 条件查询  id
     Student queryStudentInfoById(Long id);
 
     //删除 ids
     void deleteStudentInfoByIds(List<String> ids);
+
+    List<ChartHelper> queryChartInfo();
 }

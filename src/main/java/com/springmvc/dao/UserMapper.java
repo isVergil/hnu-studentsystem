@@ -7,19 +7,7 @@ import java.util.List;
 
 public interface UserMapper {
 
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
-
-    List<User> queryAdminInfoAll(User admin);
+    List<User> queryAllUserInfo();
 
     User queryUserByNameAndPassword(@Param("username") String username, @Param("password") String password, @Param("type") Integer type);
 
@@ -27,4 +15,7 @@ public interface UserMapper {
 
     int insertUser(User user);
 
+    int updatePassword(User user);
+
+    int updateRole(Long id, Long role);
 }
