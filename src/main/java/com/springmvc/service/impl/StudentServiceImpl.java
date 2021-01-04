@@ -54,4 +54,9 @@ public class StudentServiceImpl implements StudentService {
     public List<ChartHelper> queryChartInfo() {
         return studentDao.queryChartInfo();
     }
+
+    @Override
+    public List<List<?>> queryTotalCountHelper() {
+        return studentDao.queryTotalCountHelper();
+    }
 }

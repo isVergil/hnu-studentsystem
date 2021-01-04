@@ -37,7 +37,7 @@
             小提示： 请如实填写，若无法提交，<a href="/doc/modules/form.html#render" target="_blank">请联系管理员。</a>
         </blockquote>
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>新增学生信息</legend>
+            <legend>编辑学生信息</legend>
         </fieldset>
 
         <form class="layui-form" action="" lay-filter="formRender">

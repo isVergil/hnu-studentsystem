@@ -205,73 +205,11 @@
                 </div>
 
                 <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-fire icon"></i>版本信息</div>
+                    <div class="layui-card-header"><i class="fa fa-fire icon"></i>专业比例</div>
                     <div class="layui-card-body layui-text">
-                        <table class="layui-table">
-                            <colgroup>
-                                <col width="100">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <td>框架名称</td>
-                                <td>
-                                    layuimini
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>当前版本</td>
-                                <td>v2.0.0</td>
-                            </tr>
-                            <tr>
-                                <td>主要特色</td>
-                                <td>零门槛 / 响应式 / 清爽 / 极简</td>
-                            </tr>
-                            <tr>
-                                <td>演示地址</td>
-                                <td>
-                                    iframe版-v2：<a href="http://layuimini.99php.cn/iframe/v2/index.html" target="_blank">点击查看</a><br>
-                                    单页版-v2：<a href="http://layuimini.99php.cn/onepage/v2/index.html" target="_blank">点击查看</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>下载地址</td>
-                                <td>
-                                    iframe版-v2：<a href="https://github.com/zhongshaofa/layuimini/tree/v2"
-                                                  target="_blank">github</a> / <a
-                                        href="https://gitee.com/zhongshaofa/layuimini/tree/v2" target="_blank">gitee</a><br>
-                                    单页版-v2：<a href="https://github.com/zhongshaofa/layuimini/tree/v2-onepage"
-                                              target="_blank">github</a> / <a
-                                        href="https://gitee.com/zhongshaofa/layuimini/tree/v2-onepage" target="_blank">gitee</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Gitee</td>
-                                <td style="padding-bottom: 0;">
-                                    <div class="layui-btn-container">
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank"
-                                           style="margin-right: 15px"><img
-                                                src="https://gitee.com/zhongshaofa/layuimini/badge/star.svg?theme=dark"
-                                                alt="star"></a>
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank"><img
-                                                src="https://gitee.com/zhongshaofa/layuimini/badge/fork.svg?theme=dark"
-                                                alt="fork"></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Github</td>
-                                <td style="padding-bottom: 0;">
-                                    <div class="layui-btn-container">
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=star&count=true"
-                                                frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=fork&count=true"
-                                                frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="layui-card-body">
+                            <div id="echarts-bing" style="width: 100% ;min-height: 300px;"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -299,11 +237,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-blue">实时</span>
-                                                        <h5>用户统计</h5>
+                                                        <h5>学生总人数</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="totalstudent"></h1>
+                                                        <small>/人</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,11 +251,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-cyan">实时</span>
-                                                        <h5>商品统计</h5>
+                                                        <h5>导师总人数</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="totalteacher"></h1>
+                                                        <small>/人</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -327,11 +265,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-orange">实时</span>
-                                                        <h5>浏览统计</h5>
+                                                        <h5>班级个数</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="totalclass">1234</h1>
+                                                        <small>/个</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,11 +279,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-green">实时</span>
-                                                        <h5>订单统计</h5>
+                                                        <h5>研究方向</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="totalresearch">1234</h1>
+                                                        <small>/个</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -425,7 +363,7 @@
                     </div>
                     <div class="layui-col-md12">
                         <div class="layui-card">
-                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>报表统计</div>
+                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>各系人数</div>
                             <div class="layui-card-body">
                                 <div id="echarts-records" style="width: 100% ;min-height: 450px;"></div>
                             </div>
@@ -482,37 +420,18 @@
             });
         });
 
-        var name = [];
-        var gender01 = [];
-        var gender11 = [];
-        var optionchart;
-        //权限下拉框
-        $.ajax({
-            url: "/student/getChartData",
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.data.length; i++) {
-                    name.push(data.data[i].name.toString());
-                    gender01.push(data.data[i].gender0);
-                    gender11.push(data.data[i].gender1);
-                }
-
-
-            }
-        });
-console.log(name)
+        console.log(name)
         //指定图表配置项和数据
         var optionchart = {
             title: {
-                text: '各系占比'
+                text: ''
             },
             tooltip: {},
             legend: {
-                data: ['销量']
+                data: ['男生', '女生']
             },
             xAxis: {
-                data: name
+                data: []
             },
             yAxis: {
                 type: 'value'
@@ -520,152 +439,124 @@ console.log(name)
             series: [{
                 name: '男',
                 type: 'bar', //柱状
-                data: gender01,
+                data: [],
                 itemStyle: {
                     normal: { //柱子颜色
-                        color: 'red'
+                        color: '#76f2f2'
                     }
                 },
             }, {
                 name: '女',
                 type: 'bar',
-                data: gender11,
+                data: [],
                 itemStyle: {
                     normal: {
-                        color: 'blue'
+                        color: '#fc97af'
                     }
                 }
             }]
         };
 
-        var optionchartZhe = {
-            title: {
-                text: '商品订单'
-            },
-            tooltip: {},
-            legend: { //顶部显示 与series中的数据类型的name一致
-                data: ['销量', '产量', '营业额', '单价']
-            },
-            xAxis: {
-                // type: 'category',
-                // boundaryGap: false, //从起点开始
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                name: '销量',
-                type: 'line', //线性
-                data: [145, 230, 701, 734, 1090, 1130, 1120],
-            }, {
-                name: '产量',
-                type: 'line', //线性
-                data: [720, 832, 801, 834, 1190, 1230, 1220],
-            }, {
-                smooth: true, //曲线 默认折线
-                name: '营业额',
-                type: 'line', //线性
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-            }, {
-                smooth: true, //曲线
-                name: '单价',
-                type: 'line', //线性
-                data: [220, 332, 401, 534, 690, 730, 820],
-            }]
-        };
-
         var optionchartBing = {
-            title: {
-                text: '商品订单',
-                subtext: '纯属虚构', //副标题
-                x: 'center' //标题居中
-            },
             tooltip: {
                 // trigger: 'item' //悬浮显示对比
             },
             legend: {
                 orient: 'vertical', //类型垂直,默认水平
                 left: 'left', //类型区分在左 默认居中
-                data: ['单价', '总价', '销量', '产量']
             },
             series: [{
                 type: 'pie', //饼状
                 radius: '60%', //圆的大小
                 center: ['50%', '50%'], //居中
-                data: [{
-                    value: 335,
-                    name: '单价'
-                },
-                    {
-                        value: 310,
-                        name: '总价'
-                    },
-                    {
-                        value: 234,
-                        name: '销量'
-                    },
-                    {
-                        value: 135,
-                        name: '产量'
-                    }
-                ]
+                data: []
             }]
         };
+        //各系人数 柱状图
+        var echartszhu = echarts.init(document.getElementById('echarts-records'), 'walden');
+        echartszhu.setOption(optionchart);
+        //男女占比  饼图
+        var echartsBing = echarts.init(document.getElementById('echarts-bing'), 'walden');
+        echartsBing.setOption(optionchartBing);
+        $.ajax({
+            url: "/student/getChartData",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var name = [];
+                var gender0 = [];//女
+                var gender1 = [];//男
+                var piedata = [];
+                var totalstudent = 0;
+                for (var i = 0; i < data.data.length; i++) {
+                    name.push(data.data[i].name.toString());
+                    gender0.push(data.data[i].gender0);
+                    gender1.push(data.data[i].gender1);
+                    var obj = new Object();
+                    obj.name = data.data[i].name.toString();
+                    obj.value = data.data[i].gender0 + data.data[i].gender1;
+                    piedata[i] = obj;
+                    totalstudent += data.data[i].gender0;
+                    totalstudent += data.data[i].gender1;
+                }
+                //加载柱状图数据
+                echartszhu.setOption({
+                    xAxis: {
+                        data: name
+                    },
+                    series: [{
+                        name: '男生',
+                        data: gender0
+                    }, {
+                        name: '女生',
+                        data: gender1
+                    }]
+                });
+                //加载饼图数据
+                echartsBing.setOption({
+                    series: [{
+                        data: piedata
+                    }]
+                });
+                $('#totalstudent').text(totalstudent);
+            }
+        });
+        //统计数据 加载
+        $.ajax({
+            url: "/student/getTotalData",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var totalteacherCount = 0;
+                var totalteacherArray = data.data[0];
+                for (var i = 0; i < totalteacherArray.length; i++) {
+                    totalteacherCount += totalteacherArray[i].column1;
+                }
+                $('#totalteacher').text(totalteacherCount);
 
-        /**
-         * 报表功能
-         */
-        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
-        echartsRecords.setOption(optionchart);
-        // var optionRecords = {
-        //     tooltip: {
-        //         trigger: 'axis'
-        //     },
-        //     legend: {
-        //         data: ['邮件营销', '联盟广告','联盟广告']
-        //     },
-        //     grid: {
-        //         left: '3%',
-        //         right: '3%',
-        //         bottom: '15%',
-        //         top: '5%',
-        //         containLabel: true
-        //     },
-        //     toolbox: {
-        //         feature: {
-        //             saveAsImage: {}
-        //         }
-        //     },
-        //     xAxis: {
-        //         type: 'category',
-        //         boundaryGap: false,
-        //         data: [ '院系1', '院系1', '院系1', '院系1', '院系1', '院系1']
-        //     },
-        //     yAxis: {
-        //         type: 'value'
-        //     },
-        //     series: [
-        //         {
-        //             name: '男',
-        //             type: 'bar',
-        //             data: [120, 132, 101, 134, 90, 230]
-        //         },
-        //         {
-        //             name: '女',
-        //             type: 'bar',
-        //             data: [220, 182, 191, 234, 290, 330]
-        //         }
-        //     ]
-        // };
-        // echartsRecords.setOption(optionRecords);
+                var totalclassCount = 0;
+                var totalclassArray = data.data[1];
+                for (var i = 0; i < totalclassArray.length; i++) {
+                    totalclassCount += totalclassArray[i].column2;
+                }
+                $('#totalclass').text(totalclassCount);
+
+                var totalresearchCount = 0;
+                var totalresearchArray = data.data[2];
+                for (var i = 0; i < totalresearchArray.length; i++) {
+                    totalresearchCount += totalresearchArray[i].column3;
+                }
+                $('#totalresearch').text(totalresearchCount);
+            }
+        });
 
         // echarts 窗口缩放自适应
         window.onresize = function () {
-            echartsRecords.resize();
+            echartszhu.resize();
+            echartsBing.resize();
         }
-
-    });
+    })
+    ;
 </script>
 </body>
 </html>

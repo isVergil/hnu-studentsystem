@@ -24,4 +24,6 @@ public interface StudentService {
     void deleteStudentInfoByIds(List<String> ids);
 
     List<ChartHelper> queryChartInfo();
+
+    List<List<?>> queryTotalCountHelper();
 }

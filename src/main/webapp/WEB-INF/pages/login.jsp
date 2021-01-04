@@ -185,7 +185,7 @@
         }
 
         body {
-            background: url(../../images/loginbg.png) 0% 0% / cover no-repeat;
+            background: url(../../images/bg1.jpg) 0% 0% / cover no-repeat;
             position: static;
             font-size: 12px;
         }
@@ -322,8 +322,8 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-item">
-                        <input type="radio" name="type" value="0" title="普通用户" checked>
-                        <input type="radio" name="type" value="1" title="管理员">
+                        <input type="radio" name="type" value="0" title="系管理员" checked>
+                        <input type="radio" name="type" value="1" title="超级管理员">
                     </div>
                 </div>
             </div>

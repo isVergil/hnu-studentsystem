@@ -11,4 +11,5 @@ public class ChartHelper {
     private String name;
     private Integer gender0;
     private Integer gender1;
+
 }

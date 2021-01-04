@@ -31,4 +31,6 @@ public interface StudentMapper {
     void deleteStudentInfoById(Integer id);
 
     List<ChartHelper> queryChartInfo();
+
+    List<List<?>> queryTotalCountHelper();
 }

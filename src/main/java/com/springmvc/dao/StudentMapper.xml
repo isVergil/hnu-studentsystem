@@ -154,4 +154,17 @@
 			dept) a
 		LEFT JOIN t_dictionary ON t_dictionary.id = a.dept;
     </select>
+
+    <select id="queryTotalCountHelper" resultMap="totalteacher,totalclass,totalresearch">
+            SELECT count(*) AS column1 FROM t_teacher;
+            SELECT count(*) AS column2 FROM t_student_baseinfo GROUP BY classs HAVING ISNULL(classs)=0 and LENGTH(trim(classs))>0;
+            SELECT count(*) AS column3 FROM t_student_baseinfo GROUP BY research HAVING ISNULL(research)=0 and LENGTH(trim(research))>0;
+    </select>
+
+    <resultMap id="totalteacher" type="java.util.Map">
+    </resultMap>
+    <resultMap id="totalclass" type="java.util.Map">
+    </resultMap>
+    <resultMap id="totalresearch" type="java.util.Map">
+    </resultMap>
 </mapper>

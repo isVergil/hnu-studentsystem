@@ -181,4 +181,18 @@ public class StudentController {
             return R.fail("失败");
         }
     }
+
+    @GetMapping("/getTotalData")
+    @ResponseBody
+    public R getChart() {
+        try {
+            List<List<?>> chartHelpers = studentService.queryTotalCountHelper();
+            return R.ok("成功", chartHelpers);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return R.fail("失败");
+        }
+    }
+
+
 }
