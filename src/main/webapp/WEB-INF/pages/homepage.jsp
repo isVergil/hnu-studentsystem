@@ -489,11 +489,11 @@
                 var piedata = [];
                 var totalstudent = 0;
                 for (var i = 0; i < data.data.length; i++) {
-                    name.push(data.data[i].name.toString());
+                    name.push(data.data[i].name);
                     gender0.push(data.data[i].gender0);
                     gender1.push(data.data[i].gender1);
                     var obj = new Object();
-                    obj.name = data.data[i].name.toString();
+                    obj.name = data.data[i].name;
                     obj.value = data.data[i].gender0 + data.data[i].gender1;
                     piedata[i] = obj;
                     totalstudent += data.data[i].gender0;

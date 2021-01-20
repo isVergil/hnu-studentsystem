@@ -35,7 +35,11 @@ public class LoginController {
             return "index";
         return "login";
     }
-
+    //日志页面
+    @GetMapping("/logPage")
+    public String log() {
+        return "log";
+    }
     /**
      * 登录验证方法
      */

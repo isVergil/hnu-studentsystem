@@ -25,11 +25,7 @@ public class DictionaryController {
     @Autowired
     private DictionaryService dictionaryService;
 
-    //日志页面
-    @GetMapping("/logPage")
-    public String log() {
-        return "log";
-    }
+
 
     //查找所有的日志
     @RequestMapping("/loginfo")
